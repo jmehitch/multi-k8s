@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: jmek8s-tk-tls
+spec:
+  secretName: jmek8s-tk
+  issuerRef: 
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: jmek8s.tk
+  dnsNames:
+    - jmek8s.tk
+    - www.jmek8s.tk
+  acme:
+    config: 
+      - http01:
+          ingressClass: nginx
+        domains:
+          - jmek8s.tk
+          - www.jmek8s.tk
